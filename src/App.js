@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { BeatLoader } from "react-spinners";
 import axios from "axios";
-import Article from "./components/Article";
+import Header from "./components/Header";
+import { GlobalStyle } from "./components/styles/GlobalStyle";
+import Articles from "./components/Articles";
+import Pagination from "./components/Pagination";
 
 
 function App() {
@@ -9,6 +11,9 @@ function App() {
   const [error, setError] = useState("");
   const [articles, setArticles] = useState([]);
   const [subReddit, setSubReddit] = useState('webdev');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
   console.log(articles)
 
   useEffect(() => {
@@ -25,20 +30,22 @@ function App() {
     })
   }, [subReddit]);
 
+  const handleInputChange = (e) => setSubReddit(e.target.value);
+
+  // Get current page
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = articles.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Get page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     <div className="App">
-      <header>
-        <input className="subreddit-input" type="text"  value={subReddit} onChange={e => setSubReddit(e.target.value)} />
-      </header>
-      
-      <div className="articles">
-        {
-          loading ? <BeatLoader />
-          : articles.map((article, index) => <Article key={index} article={article.data} />)
-        }
-        {error ? error : null}
-      </div>
-    
+      <GlobalStyle />
+      <Header handleInputChange={handleInputChange} subReddit={subReddit} />
+      <Articles loading={loading} articles={currentPosts} error={error} />
+      <Pagination postsPerPage={postsPerPage} totalPosts={articles.length} paginate={paginate}  />
     </div>
   );
 }

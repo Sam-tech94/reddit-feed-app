@@ -1,15 +1,15 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .App {
   display: flex;
   flex-direction: column;
 }
 
-header {
+/* header {
   background-color: #ffce00;
   background-image: linear-gradient(to right, #fe4880);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
@@ -38,8 +38,8 @@ header::before {
    font-style: italic;
    text-transform: uppercase;
    text-align: center;
-}
-.articles {
+} */
+/* .articles {
   height: 100vh;
 }
 
@@ -68,4 +68,4 @@ header::before {
 
 .articles article:hover h3 {
   color: #fff;
-}
+} */
