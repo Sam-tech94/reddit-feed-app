@@ -1,6 +1,6 @@
 import React from "react";
 import { PaginationStyle } from "./styles/PaginationStyle";
-import {Routes, Route, Link} from "react-router-dom"
+import { Link} from "react-router-dom"
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     const pageNumbers = [];
@@ -14,9 +14,10 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
                 {
                     pageNumbers.map(number => (
                         <PaginationStyle onClick={() => paginate(number)} key={number}>
-                            <Link to={`?page=${number}`}>
+                            <Link to={`?page=${number}&limit=${postsPerPage}`}>
                                 {number}
                             </Link>
+                        
                         </PaginationStyle>
                     ))
                 }
