@@ -1,27 +1,24 @@
 import React from "react";
-import { PaginationStyle } from "./styles/PaginationStyle";
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom";
+import { PaginationStyle } from "./styles/PaginationStyles";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({postsPerPage, totalPosts, paginate}) => {
     const pageNumbers = [];
 
-    for (let i = 0; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
 
     return (
-            <ul>
-                {
-                    pageNumbers.map(number => (
-                        <PaginationStyle onClick={() => paginate(number)} key={number}>
-                            <Link to={`?page=${number}&limit=${postsPerPage}`}>
-                                {number}
-                            </Link>
-                        
-                        </PaginationStyle>
-                    ))
-                }
-            </ul>
+        <ul>
+            {
+                pageNumbers.map((number, index) => (
+                    <PaginationStyle key={index} onClick={() => paginate(number)} >
+                        <Link to={`?page=${number}`}>{number}</Link>
+                    </PaginationStyle>
+                ))
+            }
+        </ul>
     );
 };
 

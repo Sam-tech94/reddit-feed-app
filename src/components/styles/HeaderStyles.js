@@ -5,7 +5,6 @@ export const HeaderStyles = styled.header`
     background-image: linear-gradient(to right, #fe4880, #ffce00);
     box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
     padding: 15px;
-
     input {
         display: inline-block;
         color: #f3f3f3;
@@ -18,7 +17,6 @@ export const HeaderStyles = styled.header`
         outline: none;
         appearance: none;
     }
-
     &::before {
         content: "/r/";
         display: inline-block;
